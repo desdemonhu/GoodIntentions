@@ -211,6 +211,10 @@ else if(dialogue_bedTop){
         case 1:
         str = "This is Chace's response.";
         strName = "Tao";
+        
+        ///Get fox origami
+        var foxFigure = scr_itemcheck(0)
+        if(foxFigure == 0){scr_itempickup(0);}
             
         dialogue_bedTop = false;
         with (obj_text){
@@ -295,6 +299,10 @@ else if(dialogue_grate){
         case 1:
         str = "This is Chace's response";
         strName = "Tao";
+        
+        ///get dead bug
+        var deadBug = scr_itemcheck(1)
+        if(deadBug == 0){scr_itempickup(1);}
             
         dialogue_grate = false;
         with (obj_text){

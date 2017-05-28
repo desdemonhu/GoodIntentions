@@ -17,6 +17,7 @@
       <sprite>sprites\spr_sink</sprite>
       <sprite>sprites\spr_toilet</sprite>
       <sprite>sprites\spr_wallGrate</sprite>
+      <sprite>sprites\spr_inventory_prison</sprite>
     </sprites>
     <sprites name="Garbage">
       <sprite>sprites\spr_door</sprite>
@@ -26,6 +27,7 @@
       <sprite>sprites\spr_wall_down</sprite>
     </sprites>
     <sprite>sprites\spr_cursor</sprite>
+    <sprite>sprites\spr_border</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bk_prison</background>
@@ -33,6 +35,9 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_text.gml</script>
+    <script>scripts\scr_itempickup.gml</script>
+    <script>scripts\scr_itemdrop.gml</script>
+    <script>scripts\scr_itemcheck.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text_box</font>
@@ -64,6 +69,7 @@
     <objects name="Controllers">
       <object>objects\obj_playerController</object>
       <object>objects\obj_text</object>
+      <object>objects\obj_inventory</object>
     </objects>
   </objects>
   <rooms name="rooms">
