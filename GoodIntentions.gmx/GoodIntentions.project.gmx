@@ -6,13 +6,30 @@
   <NewExtensions/>
   <sounds name="sound"/>
   <sprites name="sprites">
-    <sprite>sprites\spr_wall</sprite>
-    <sprite>sprites\spr_wall_corner</sprite>
-    <sprite>sprites\spr_wall_down</sprite>
-    <sprite>sprites\spr_wall_corner_left</sprite>
-    <sprite>sprites\spr_door</sprite>
+    <sprites name="Prison">
+      <sprite>sprites\spr_bed</sprite>
+      <sprite>sprites\spr_bedTop</sprite>
+      <sprite>sprites\spr_bench</sprite>
+      <sprite>sprites\spr_doorLock</sprite>
+      <sprite>sprites\spr_grate</sprite>
+      <sprite>sprites\spr_light</sprite>
+      <sprite>sprites\spr_prisonWindow</sprite>
+      <sprite>sprites\spr_sink</sprite>
+      <sprite>sprites\spr_toilet</sprite>
+      <sprite>sprites\spr_wallGrate</sprite>
+    </sprites>
+    <sprites name="Garbage">
+      <sprite>sprites\spr_door</sprite>
+      <sprite>sprites\spr_wall</sprite>
+      <sprite>sprites\spr_wall_corner</sprite>
+      <sprite>sprites\spr_wall_corner_left</sprite>
+      <sprite>sprites\spr_wall_down</sprite>
+    </sprites>
+    <sprite>sprites\spr_cursor</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bk_prison</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_text.gml</script>
@@ -21,17 +38,33 @@
     <font>fonts\fnt_text_box</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_wall</object>
-    <object>objects\obj_wall_corner</object>
-    <object>objects\obj_wall_down</object>
-    <object>objects\obj_wall_corner_left</object>
-    <object>objects\obj_door</object>
     <object>objects\obj_text</object>
     <objects name="dialogue">
       <object>objects\obj_text_room</object>
     </objects>
+    <objects name="Prison">
+      <object>objects\obj_bed</object>
+      <object>objects\obj_bedTop</object>
+      <object>objects\obj_bench</object>
+      <object>objects\obj_doorLock</object>
+      <object>objects\obj_grate</object>
+      <object>objects\obj_light</object>
+      <object>objects\obj_prisonWindow</object>
+      <object>objects\obj_sink</object>
+      <object>objects\obj_toilet</object>
+      <object>objects\obj_wallGrate</object>
+    </objects>
+    <objects name="Garbage">
+      <object>objects\obj_door</object>
+      <object>objects\obj_wall_corner_left</object>
+      <object>objects\obj_wall_corner</object>
+      <object>objects\obj_wall</object>
+      <object>objects\obj_wall_down</object>
+    </objects>
+    <object>objects\obj_cursor</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_prisonCell</room>
     <room>rooms\rm_prison</room>
   </rooms>
   <help>
