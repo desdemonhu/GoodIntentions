@@ -38,7 +38,6 @@
     <font>fonts\fnt_text_box</font>
   </fonts>
   <objects name="objects">
-    <object>objects\obj_text</object>
     <objects name="dialogue">
       <object>objects\obj_text_room</object>
     </objects>
@@ -62,6 +61,10 @@
       <object>objects\obj_wall_down</object>
     </objects>
     <object>objects\obj_cursor</object>
+    <objects name="Controllers">
+      <object>objects\obj_playerController</object>
+      <object>objects\obj_text</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_prisonCell</room>
