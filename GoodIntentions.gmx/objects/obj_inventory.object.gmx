@@ -35,8 +35,13 @@ maxItems = 5;
 
 for(i = 0; i &lt; maxItems; ++i){
     global.inventory[i] = -1;
+    button[i] = instance_create(0,0,obj_invbutton); ///invisible button so you can move items in the inventory
+    button[i].slot = i;
 }
 
+globalvar mouseItem;
+mouseItem = -1;
+//instance_create(0,0,obj_cursor);
 
 </string>
           </argument>
@@ -73,13 +78,20 @@ for(i = 0; i &lt; maxItems; ++i){
     draw_set_alpha(1);
     
     for(i = 0; i &lt; maxItems; ++i){
-        draw_sprite(spr_border,0,x1+100 + (i*150),y2-24);
+        var ix = x1+100 + (i*150)
+        var iy = y2-24
+        
+        draw_sprite(spr_border,0,ix, iy);
+         button[i].x = ix;
+         button[i].y = iy;
+    }
+ /*       draw_sprite(spr_border,0,x1+100 + (i*150),y2-24);
         if (global.inventory[i] != -1)
         {
-            draw_sprite(spr_inventory_prison,global.inventory[i],x1+50 + (i*150),y1+10);
+            //draw_sprite(spr_inventory_prison,global.inventory[i],x1+50 + (i*150),y1+10);
         }
+       */  
     }
-}
 </string>
           </argument>
         </arguments>

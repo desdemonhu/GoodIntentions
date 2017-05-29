@@ -38,6 +38,8 @@
     <script>scripts\scr_itempickup.gml</script>
     <script>scripts\scr_itemdrop.gml</script>
     <script>scripts\scr_itemcheck.gml</script>
+    <script>scripts\scr_itempickup_slot.gml</script>
+    <script>scripts\src_itemdrop_slot.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_text_box</font>
@@ -70,6 +72,7 @@
       <object>objects\obj_playerController</object>
       <object>objects\obj_text</object>
       <object>objects\obj_inventory</object>
+      <object>objects\obj_invbutton</object>
     </objects>
   </objects>
   <rooms name="rooms">
