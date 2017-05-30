@@ -47,6 +47,7 @@
   <objects name="objects">
     <objects name="dialogue">
       <object>objects\obj_text_room</object>
+      <object>objects\obj_text_room_puzzle</object>
     </objects>
     <objects name="Prison">
       <object>objects\obj_bed</object>

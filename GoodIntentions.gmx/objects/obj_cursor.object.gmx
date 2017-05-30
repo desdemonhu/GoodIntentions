@@ -97,6 +97,39 @@ move_towards_point(mouse_x, mouse_y,point_distance(x,y, mouse_x, mouse_y));
         </arguments>
       </action>
     </event>
+    <event eventtype="4" ename="obj_toilet">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///If holding the fox figure when clicking on the toilet
+
+var heldItem = mouseItem; ///TODO: FIND OUT HOW TO DETECT WHICH ITEM IS IN THE MOUSE CURSOR
+
+if(heldItem == -1){
+   if mouse_check_button_pressed(mb_left){
+        with obj_text_room_puzzle {
+            foxFigurePuzzle = true;
+        }
+   } 
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="64">
       <action>
         <libid>1</libid>
