@@ -77,7 +77,8 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
             //show_grace = true;
            ///show_loren = false;
             //show_meredith = false;
-            ++dialogue;
+            mouseItem = -1;
+            ++dialogue_foxFigurePuzzle;
             with (obj_text){
                 instance_destroy();
                 }
@@ -86,7 +87,7 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
             str = "Rad";
             strName = "Tao";
             
-            ++dialogue;
+            ++dialogue_foxFigurePuzzle;
             with (obj_text){
                 instance_destroy();
                 }
@@ -94,7 +95,7 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
         case 2: 
             str = "This is some more dialogue";
             strName = mcFirstName;
-            ++dialogue;
+            ++dialogue_foxFigurePuzzle;
             with (obj_text){
                 instance_destroy();
                 }
@@ -102,7 +103,7 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
         case 3: 
             str = "About the puzzle";
              strName = "Tao";
-            ++dialogue; 
+            ++dialogue_foxFigurePuzzle; 
             with (obj_text){
                 instance_destroy();
                 }
@@ -111,7 +112,7 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
             str = "And you get a pipe out of it";
             strName = mcFirstName;
             
-            ++dialogue;
+            ++dialogue_foxFigurePuzzle;
             with (obj_text){
                 instance_destroy();
                 }                       

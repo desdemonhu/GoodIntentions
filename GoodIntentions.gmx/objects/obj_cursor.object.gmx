@@ -116,9 +116,9 @@ move_towards_point(mouse_x, mouse_y,point_distance(x,y, mouse_x, mouse_y));
             <kind>1</kind>
             <string>///If holding the fox figure when clicking on the toilet
 
-var heldItem = mouseItem; ///TODO: FIND OUT HOW TO DETECT WHICH ITEM IS IN THE MOUSE CURSOR
+var heldItem = mouseItem;
 
-if(heldItem == -1){
+if(heldItem == 0){
    if mouse_check_button_pressed(mb_left){
         with obj_text_room_puzzle {
             foxFigurePuzzle = true;
