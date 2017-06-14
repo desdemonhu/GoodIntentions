@@ -79,6 +79,7 @@ dialogueWallGrate = 0;
           <argument>
             <kind>1</kind>
             <string>///Dialogue
+var itemCheck;
 
 if keyboard_check_released(ord("B")) {
         dialogue = clamp(dialogue-2, 0,30);
@@ -331,6 +332,10 @@ else if(dialogue_light){
         case 1:
         str = "This is Chace's response";
         strName = "Tao";
+        
+        ///Get light cover
+        itemCheck = scr_itemcheck(3)
+        if(itemCheck == 0){scr_itempickup(3);}
             
         dialogue_light = false;
         with (obj_text){
@@ -415,6 +420,10 @@ else if(dialogue_toilet){
         case 1:
         str = "This is Chace's response";
         strName = "Tao";
+        
+        ///Get toilet paper dowel
+        itemCheck = scr_itemcheck(6)
+        if(itemCheck == 0){scr_itempickup(6);}
             
         dialogue_toilet = false;
         with (obj_text){

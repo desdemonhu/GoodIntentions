@@ -32,6 +32,9 @@ rewind = true;  //use to rewind dialogue and start dialgoue automatically
 foxFigurePuzzle = false;
 dialogue_foxFigurePuzzle = 0;
 
+chainPuzzle = false;
+dialogue_chainPuzzle = 0;
+
 </string>
           </argument>
         </arguments>
@@ -55,9 +58,11 @@ dialogue_foxFigurePuzzle = 0;
           <argument>
             <kind>1</kind>
             <string>///Dialogue
+var itemCheck;
 
 if keyboard_check_released(ord("B")) {
         dialogue_foxFigurePuzzle = clamp(dialogue_foxFigurePuzzle-2, 0,30);
+        dialoguechainPuzzle = clamp(dialogue_foxFigurePuzzle-2, 0,30);
         
         rewind = true;
     }
@@ -72,7 +77,7 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
     switch (dialogue_foxFigurePuzzle)
     {
         case 0:
-            str = "You have Combined the fox with the toilet";
+            str = "You have Combined the fox with the sink";
             strName = mcFirstName;
             //show_grace = true;
            ///show_loren = false;
@@ -112,6 +117,10 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
             str = "And you get a pipe out of it";
             strName = mcFirstName;
             
+            ///Get pipe
+            itemCheck = scr_itemcheck(2)
+            if(itemCheck == 0){scr_itempickup(2);}
+            
             ++dialogue_foxFigurePuzzle;
             with (obj_text){
                 instance_destroy();
@@ -124,6 +133,46 @@ if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || re
             //with obj_parentChar {
             //    event_perform(ev_collision, obj_parentEnemy);
             //}
+            with (obj_text){
+                instance_destroy();
+                } 
+            break;
+        default: str = "Something went wrong..."; break;
+    }
+    scr_text(str,0.5,200, 600,strName);
+}
+
+else if(chainPuzzle){
+    var str;
+    var strName;
+    
+    switch(dialogue_chainPuzzle){
+        case 0:
+            str = "You have Combined the pipe with the bench";
+            strName = mcFirstName;
+            //show_grace = true;
+           ///show_loren = false;
+            //show_meredith = false;
+            mouseItem = -1;
+            
+            ///Put pipe back in the inventory
+            var itemCheck = scr_itemcheck(2);
+            if(itemCheck == 0){scr_itempickup(2);}
+            
+            ++dialogue_chainPuzzle;
+            with (obj_text){
+                instance_destroy();
+                }
+            break;
+            
+            case 1:
+            str = "Extra rad! You get the chain now!";
+            strName = "Tao";
+            chainPuzzle = false;
+
+            var itemCheckChain = scr_itemcheck(5);
+            if(itemCheckChain == 0){scr_itempickup(5)};
+
             with (obj_text){
                 instance_destroy();
                 } 

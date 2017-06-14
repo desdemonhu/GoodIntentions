@@ -50,6 +50,45 @@ if(item != -1){
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>//Combining Items
+var heldItem = mouseItem;
+var mouseCheck = mouse_check_button_pressed(mb_left);
+
+///Combine light and toilet paper dowel to make cup for water
+if(heldItem == 3 || heldItem == 6){
+    
+    if(abs(mouse_x - x) &lt; 16) &amp;&amp; (abs(mouse_y-y) &lt; 16) {  ///Checks if mouse is within 16px of current button
+       if(mouseCheck){
+        if(global.inventory[slot] == 3 || global.inventory[slot] == 6){
+            scr_itemdrop(3);
+            scr_itemdrop(6);
+            scr_itempickup(4);
+            mouseItem = -1;
+            
+        }
+       }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
   </events>
   <PhysicsObject>0</PhysicsObject>

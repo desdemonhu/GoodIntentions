@@ -73,9 +73,7 @@ image_index = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (!combatDialogue &amp;&amp; !dialogue_bed &amp;&amp; !dialogue_bedTop &amp;&amp; !dialogue_bench &amp;&amp; 
-!dialogue_doorLock &amp;&amp; !dialogue_grate &amp;&amp; !dialogue_light &amp;&amp; !dialogue_prisonWindow &amp;&amp; 
-!dialogue_sink &amp;&amp; !dialogue_toilet &amp;&amp; !dialogue_wallGrate){
+            <string>if(!instance_exists(obj_text)){
 
 dialogue_prisonWindow = true;
 }
