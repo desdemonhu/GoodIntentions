@@ -29,7 +29,7 @@
 Inventory items - in spr_inventory_prison
 */
 
-globalvar showInventory, maxItems, showRoomEscape;///Display the inventory and max number of slots
+globalvar showInventory, maxItems, finalEscape, showRoomEscape;///Display the inventory and max number of slots
 showInventory = true;
 showRoomEscape = true;
 maxItems = 5;
@@ -74,7 +74,9 @@ mouseItem = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (showInventory) {
+            <string>///Show inventory
+
+if (showInventory) {
     var x1, x2, y1, y2;
     x1 = view_xview[0];
     x2 = x1 + view_wview[0];
@@ -151,6 +153,50 @@ if(showRoomEscape){
     
 }
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Room Escape conditions
+
+if(showRoomEscape){
+
+    if(global.inventory[maxItems] == 2 ){
+        draw_line_width_colour(x1,y1,x2,y2,8,c_white,c_white);
+        draw_line_width_colour(x1,y1,x3,y3,8,c_white,c_white);
+    }
+    
+    if(global.inventory[maxItems+1] == 4) {
+        draw_line_width_colour(x1,y1,x2,y2,8,c_white,c_white);
+        draw_line_width_colour(x2,y2,x3,y3,8,c_white,c_white);
+    }
+    
+    if(global.inventory[maxItems+2] == 5){
+        draw_line_width_colour(x2,y2,x3,y3,8,c_white,c_white);
+        draw_line_width_colour(x1,y1,x3,y3,8,c_white,c_white);
+    }
+    
+    if(global.inventory[maxItems] == 2 &amp;&amp; global.inventory[maxItems+1] == 4 &amp;&amp; global.inventory[maxItems+2] == 5){
+        show_message("You got the combo right!");
+        
+    }
+}
 </string>
           </argument>
         </arguments>
