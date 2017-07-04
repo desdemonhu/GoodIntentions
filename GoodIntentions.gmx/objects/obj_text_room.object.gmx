@@ -26,10 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///Variables
-globalvar combatDialogue;
+globalvar combatDialogue, escaping;
 combatDialogue = true;
 dialogue = 0;
 rewind = true;  //use to rewind dialogue and start dialgoue automatically
+escaping = false;
 
 ///Variables for prison dialogue
 globalvar dialogue_bed, dialogue_bedTop, dialogue_bench, dialogue_doorLock, dialogue_grate, dialogue_light, dialogue_prisonWindow, dialogue_sink, dialogue_toilet, dialogue_wallGrate;
@@ -80,403 +81,403 @@ dialogueWallGrate = 0;
             <kind>1</kind>
             <string>///Dialogue
 var itemCheck;
-
-if keyboard_check_released(ord("B")) {
-        dialogue = clamp(dialogue-2, 0,30);
-        dialogueBed = clamp(dialogueBed-2, 0,30);
-        dialogueBedTop = clamp(dialogueBedTop-2, 0,30);
-        dialogueBench = clamp(dialogueBench-2, 0,30);
-        dialogueDoorLock = clamp(dialogueDoorLock-2, 0,30);
-        dialogueGrate = clamp(dialogueGrate-2, 0,30);
-        dialogueLight = clamp(dialogueLight-2, 0,30);
-        dialoguePrisonWindow = clamp(dialoguePrisonWindow-2, 0,30);
-        dialogueSink = clamp(dialogueSink-2, 0,30);
-        dialogueToilet = clamp(dialogueToilet-2, 0,30);
-        dialogueWallGrate = clamp(dialogueWallGrate-2, 0,30);
+if(!escaping){
+    if keyboard_check_released(ord("B")) {
+            dialogue = clamp(dialogue-2, 0,30);
+            dialogueBed = clamp(dialogueBed-2, 0,30);
+            dialogueBedTop = clamp(dialogueBedTop-2, 0,30);
+            dialogueBench = clamp(dialogueBench-2, 0,30);
+            dialogueDoorLock = clamp(dialogueDoorLock-2, 0,30);
+            dialogueGrate = clamp(dialogueGrate-2, 0,30);
+            dialogueLight = clamp(dialogueLight-2, 0,30);
+            dialoguePrisonWindow = clamp(dialoguePrisonWindow-2, 0,30);
+            dialogueSink = clamp(dialogueSink-2, 0,30);
+            dialogueToilet = clamp(dialogueToilet-2, 0,30);
+            dialogueWallGrate = clamp(dialogueWallGrate-2, 0,30);
+            
+            rewind = true;
+        }
         
-        rewind = true;
+    if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || rewind)
+    {   
+        rewind = false;
+        
+        if (combatDialogue){
+        var str;
+        var strName;
+        switch (dialogue)
+        {
+            case 0:
+                str = "So we're in a prison now.";
+                strName = mcFirstName;
+                //show_grace = true;
+               ///show_loren = false;
+                //show_meredith = false;
+                ++dialogue;
+                with (obj_text){
+                    instance_destroy();
+                    }
+                break;
+            case 1:
+                str = "Rad";
+                strName = "Tao";
+                
+                ++dialogue;
+                with (obj_text){
+                    instance_destroy();
+                    }
+                break;
+            case 2: 
+                str = "Let's have a look around.";
+                strName = mcFirstName;
+                ++dialogue;
+                with (obj_text){
+                    instance_destroy();
+                    }
+                break;
+            case 3: 
+                str = "Ok.";
+                 strName = "Tao";
+                ++dialogue; 
+                with (obj_text){
+                    instance_destroy();
+                    }
+                break;
+            case 4: 
+                str = "Oh what's that?";
+                strName = mcFirstName;
+                
+                ++dialogue;
+                with (obj_text){
+                    instance_destroy();
+                    }                       
+                break;
+            case 5:
+                str = "Let's have a look.";
+                strName = "Tao";
+                combatDialogue = false;
+                //with obj_parentChar {
+                //    event_perform(ev_collision, obj_parentEnemy);
+                //}
+                with (obj_text){
+                    instance_destroy();
+                    } 
+                break;
+            default: str = "Something went wrong..."; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
     
-if(mouse_check_button_released(mb_left)|| keyboard_check_pressed(vk_enter) || rewind)
-{   
-    rewind = false;
-    
-    if (combatDialogue){
-    var str;
-    var strName;
-    switch (dialogue)
-    {
-        case 0:
-            str = "So we're in a prison now.";
+    else if(dialogue_bed){
+        var str;
+        var strName;
+        switch (dialogueBed){
+            case 0:
+            str = "This is the dialogue for the bed.";
             strName = mcFirstName;
-            //show_grace = true;
-           ///show_loren = false;
-            //show_meredith = false;
-            ++dialogue;
-            with (obj_text){
-                instance_destroy();
-                }
-            break;
-        case 1:
-            str = "Rad";
-            strName = "Tao";
-            
-            ++dialogue;
-            with (obj_text){
-                instance_destroy();
-                }
-            break;
-        case 2: 
-            str = "Let's have a look around.";
-            strName = mcFirstName;
-            ++dialogue;
-            with (obj_text){
-                instance_destroy();
-                }
-            break;
-        case 3: 
-            str = "Ok.";
-             strName = "Tao";
-            ++dialogue; 
-            with (obj_text){
-                instance_destroy();
-                }
-            break;
-        case 4: 
-            str = "Oh what's that?";
-            strName = mcFirstName;
-            
-            ++dialogue;
+                
+            ++dialogueBed;
             with (obj_text){
                 instance_destroy();
                 }                       
             break;
-        case 5:
-            str = "Let's have a look.";
+            
+            case 1:
+            str = "This is Chace's response";
             strName = "Tao";
-            combatDialogue = false;
-            //with obj_parentChar {
-            //    event_perform(ev_collision, obj_parentEnemy);
-            //}
+                
+            dialogue_bed = false;
             with (obj_text){
                 instance_destroy();
-                } 
+                }                       
             break;
-        default: str = "Something went wrong..."; break;
+            default: str = "Something went wrong in dialogue_bed"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_bed){
-    var str;
-    var strName;
-    switch (dialogueBed){
-        case 0:
-        str = "This is the dialogue for the bed.";
-        strName = mcFirstName;
+    
+    else if(dialogue_bedTop){
+        var str;
+        var strName;
+        switch (dialogueBedTop){
+            case 0:
+            str = "This is the dialogue for the top bunk.";
+            strName = mcFirstName;
+                
+            ++dialogueBedTop;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueBed;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
+            case 1:
+            str = "This is Chace's response.";
+            strName = "Tao";
             
-        dialogue_bed = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_bed"; break;
+            ///Get fox origami
+            var foxFigure = scr_itemcheck(0)
+            if(foxFigure == 0){scr_itempickup(0);}
+                
+            dialogue_bedTop = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_bedTop"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_bedTop){
-    var str;
-    var strName;
-    switch (dialogueBedTop){
-        case 0:
-        str = "This is the dialogue for the top bunk.";
-        strName = mcFirstName;
+    
+    else if(dialogue_bench){
+        var str;
+        var strName;
+        switch (dialogueBench){
+            case 0:
+            str = "This is the dialogue for the bench.";
+            strName = mcFirstName;
+                
+            ++dialogueBench;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueBedTop;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response.";
-        strName = "Tao";
-        
-        ///Get fox origami
-        var foxFigure = scr_itemcheck(0)
-        if(foxFigure == 0){scr_itempickup(0);}
-            
-        dialogue_bedTop = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_bedTop"; break;
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
+                
+            dialogue_bench = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_bench"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_bench){
-    var str;
-    var strName;
-    switch (dialogueBench){
-        case 0:
-        str = "This is the dialogue for the bench.";
-        strName = mcFirstName;
+    
+    else if(dialogue_doorLock){
+        var str;
+        var strName;
+        switch (dialogueDoorLock){
+            case 0:
+            str = "This is the dialogue for the Door Lock.";
+            strName = mcFirstName;
+                
+            ++dialogueDoorLock;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueBench;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-            
-        dialogue_bench = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_bench"; break;
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
+                
+            dialogue_doorLock = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_doorLock"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_doorLock){
-    var str;
-    var strName;
-    switch (dialogueDoorLock){
-        case 0:
-        str = "This is the dialogue for the Door Lock.";
-        strName = mcFirstName;
+    
+    else if(dialogue_grate){
+        var str;
+        var strName;
+        switch (dialogueGrate){
+            case 0:
+            str = "This is the dialogue for the bench.";
+            strName = mcFirstName;
+                
+            ++dialogueGrate;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueDoorLock;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
             
-        dialogue_doorLock = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_doorLock"; break;
+            ///get dead bug
+            var deadBug = scr_itemcheck(1)
+            if(deadBug == 0){scr_itempickup(1);}
+                
+            dialogue_grate = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_grate"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_grate){
-    var str;
-    var strName;
-    switch (dialogueGrate){
-        case 0:
-        str = "This is the dialogue for the bench.";
-        strName = mcFirstName;
+    
+    else if(dialogue_light){
+        var str;
+        var strName;
+        switch (dialogueLight){
+            case 0:
+            str = "This is the dialogue for the bench.";
+            strName = mcFirstName;
+                
+            ++dialogueLight;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueGrate;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-        
-        ///get dead bug
-        var deadBug = scr_itemcheck(1)
-        if(deadBug == 0){scr_itempickup(1);}
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
             
-        dialogue_grate = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_grate"; break;
+            ///Get light cover
+            itemCheck = scr_itemcheck(3)
+            if(itemCheck == 0){scr_itempickup(3);}
+                
+            dialogue_light = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_light"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_light){
-    var str;
-    var strName;
-    switch (dialogueLight){
-        case 0:
-        str = "This is the dialogue for the bench.";
-        strName = mcFirstName;
+    
+    else if(dialogue_prisonWindow){
+        var str;
+        var strName;
+        switch (dialoguePrisonWindow){
+            case 0:
+            str = "This is the dialogue for the bench.";
+            strName = mcFirstName;
+                
+            ++dialoguePrisonWindow;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueLight;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-        
-        ///Get light cover
-        itemCheck = scr_itemcheck(3)
-        if(itemCheck == 0){scr_itempickup(3);}
-            
-        dialogue_light = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_light"; break;
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
+                
+            dialogue_prisonWindow = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_prisonWindow"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_prisonWindow){
-    var str;
-    var strName;
-    switch (dialoguePrisonWindow){
-        case 0:
-        str = "This is the dialogue for the bench.";
-        strName = mcFirstName;
+    
+    else if(dialogue_sink){
+        var str;
+        var strName;
+        switch (dialogueSink){
+            case 0:
+            str = "This is the dialogue for the Sink.";
+            strName = mcFirstName;
+                
+            ++dialogueSink;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialoguePrisonWindow;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-            
-        dialogue_prisonWindow = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_prisonWindow"; break;
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
+                
+            dialogue_sink = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_sink"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_sink){
-    var str;
-    var strName;
-    switch (dialogueSink){
-        case 0:
-        str = "This is the dialogue for the Sink.";
-        strName = mcFirstName;
+    
+    else if(dialogue_toilet){
+        var str;
+        var strName;
+        switch (dialogueToilet){
+            case 0:
+            str = "This is the dialogue for the Toilet.";
+            strName = mcFirstName;
+                
+            ++dialogueToilet;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueSink;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
             
-        dialogue_sink = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_sink"; break;
+            ///Get toilet paper dowel
+            itemCheck = scr_itemcheck(6)
+            if(itemCheck == 0){scr_itempickup(6);}
+                
+            dialogue_toilet = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_toilet"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_toilet){
-    var str;
-    var strName;
-    switch (dialogueToilet){
-        case 0:
-        str = "This is the dialogue for the Toilet.";
-        strName = mcFirstName;
+    
+    else if(dialogue_wallGrate){
+        var str;
+        var strName;
+        switch (dialogueWallGrate){
+            case 0:
+            str = "This is the dialogue for the wall grate.";
+            strName = mcFirstName;
+                
+            ++dialogueWallGrate;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
             
-        ++dialogueToilet;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-        
-        ///Get toilet paper dowel
-        itemCheck = scr_itemcheck(6)
-        if(itemCheck == 0){scr_itempickup(6);}
-            
-        dialogue_toilet = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_toilet"; break;
+            case 1:
+            str = "This is Chace's response";
+            strName = "Tao";
+                
+            dialogue_wallGrate = false;
+            with (obj_text){
+                instance_destroy();
+                }                       
+            break;
+            default: str = "Something went wrong in dialogue_wallGrate"; break;
+        }
+        scr_text(str,0.5,200, 600,strName);
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-else if(dialogue_wallGrate){
-    var str;
-    var strName;
-    switch (dialogueWallGrate){
-        case 0:
-        str = "This is the dialogue for the wall grate.";
-        strName = mcFirstName;
-            
-        ++dialogueWallGrate;
+    
+    ///destroy dialogue boxes and character sprites if no dialogue is being flagged
+    else if (!combatDialogue &amp;&amp; !dialogue_bed &amp;&amp; !dialogue_bedTop &amp;&amp; !dialogue_bench &amp;&amp; 
+    !dialogue_doorLock &amp;&amp; !dialogue_grate &amp;&amp; !dialogue_light &amp;&amp; !dialogue_prisonWindow &amp;&amp; 
+    !dialogue_sink &amp;&amp; !dialogue_toilet &amp;&amp; !dialogue_wallGrate){
+        //show_grace = false;
+        //show_meredith = false;
+        //show_loren = false;
         with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        
-        case 1:
-        str = "This is Chace's response";
-        strName = "Tao";
-            
-        dialogue_wallGrate = false;
-        with (obj_text){
-            instance_destroy();
-            }                       
-        break;
-        default: str = "Something went wrong in dialogue_wallGrate"; break;
+        instance_destroy();
+        }
     }
-    scr_text(str,0.5,200, 600,strName);
-}
-
-///destroy dialogue boxes and character sprites if no dialogue is being flagged
-else if (!combatDialogue &amp;&amp; !dialogue_bed &amp;&amp; !dialogue_bedTop &amp;&amp; !dialogue_bench &amp;&amp; 
-!dialogue_doorLock &amp;&amp; !dialogue_grate &amp;&amp; !dialogue_light &amp;&amp; !dialogue_prisonWindow &amp;&amp; 
-!dialogue_sink &amp;&amp; !dialogue_toilet &amp;&amp; !dialogue_wallGrate){
-    //show_grace = false;
-    //show_meredith = false;
-    //show_loren = false;
-    with (obj_text){
-    instance_destroy();
+    
     }
 }
-
-}
-
 </string>
           </argument>
         </arguments>

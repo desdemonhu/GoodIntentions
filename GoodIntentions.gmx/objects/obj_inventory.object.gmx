@@ -31,7 +31,7 @@ Inventory items - in spr_inventory_prison
 
 globalvar showInventory, maxItems, finalEscape, showRoomEscape;///Display the inventory and max number of slots
 showInventory = true;
-showRoomEscape = true;
+showRoomEscape = false;
 maxItems = 5;
 finalEscape = 3;
 
@@ -175,6 +175,43 @@ if(showRoomEscape){
             <kind>1</kind>
             <string>///Room Escape conditions
 
+///Show Room escape button
+if(showInventory &amp;&amp; !showRoomEscape){
+    var pipe = scr_itemcheck(2);
+    var water = scr_itemcheck(4);
+    var chain = scr_itemcheck(5);
+    
+    var xEscape = view_wview[0]-124
+    var yEscape = view_yview[0]+64
+
+    
+    if(pipe == 1 &amp;&amp; water == 1 &amp;&amp; chain == 1){
+        draw_sprite(spr_border, 0, xEscape, yEscape);
+        draw_set_colour(c_navy);
+        draw_set_alpha(.6);
+        draw_rectangle(xEscape - 55, yEscape-20, xEscape + 50, yEscape +20, false);
+        draw_set_colour(c_white);
+        draw_set_alpha(1);
+        draw_text(xEscape-34, yEscape-10, "Escape");
+        draw_set_colour(c_black);
+        
+        mouseCheck = mouse_check_button_pressed(mb_left);
+        
+        if(abs(mouse_x - xEscape) &lt; 16) &amp;&amp; (abs(mouse_y-yEscape) &lt; 16){
+            draw_set_color(c_black);
+            draw_rectangle(xEscape - 55, yEscape-20, xEscape + 50, yEscape +20, false);
+            draw_set_colour(c_white);
+            draw_text(xEscape-34, yEscape-10, "Escape");
+           if(mouseCheck){
+            showRoomEscape = true;
+            escaping = true;
+           } 
+        }
+    }
+}
+
+
+///For room escape item placement
 if(showRoomEscape){
 
     if(global.inventory[maxItems] == 2 ){
