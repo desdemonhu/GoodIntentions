@@ -110,9 +110,8 @@ if(!escaping){
             case 0:
                 str = "So we're in a prison now.";
                 strName = mcFirstName;
-                //show_grace = true;
-               ///show_loren = false;
-                //show_meredith = false;
+                showMini = true;
+                showTao = false;
                 ++dialogue;
                 with (obj_text){
                     instance_destroy();
@@ -121,7 +120,8 @@ if(!escaping){
             case 1:
                 str = "Rad";
                 strName = "Tao";
-                
+                showMini = false;
+                showTao = true;
                 ++dialogue;
                 with (obj_text){
                     instance_destroy();
@@ -130,6 +130,8 @@ if(!escaping){
             case 2: 
                 str = "Let's have a look around.";
                 strName = mcFirstName;
+                showMini = true;
+                showTao = false;
                 ++dialogue;
                 with (obj_text){
                     instance_destroy();
@@ -138,6 +140,8 @@ if(!escaping){
             case 3: 
                 str = "Ok.";
                  strName = "Tao";
+                 showMini = false;
+                showTao = true;
                 ++dialogue; 
                 with (obj_text){
                     instance_destroy();
@@ -146,7 +150,8 @@ if(!escaping){
             case 4: 
                 str = "Oh what's that?";
                 strName = mcFirstName;
-                
+                showMini = true;
+                showTao = false;
                 ++dialogue;
                 with (obj_text){
                     instance_destroy();
@@ -155,6 +160,8 @@ if(!escaping){
             case 5:
                 str = "Let's have a look.";
                 strName = "Tao";
+                showMini = false;
+                showTao = true;
                 combatDialogue = false;
                 //with obj_parentChar {
                 //    event_perform(ev_collision, obj_parentEnemy);

@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-1000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -29,6 +29,50 @@
 globalvar mcFirstName, mcLastName;
 mcFirstName = "Mini";
 mcLastName = "Rhodes";
+
+/////
+globalvar showMini, showTao;
+showMini = false;
+showTao = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Show characters for dialogue
+x1 = 800;
+y1 = 350;
+
+var textbox = instance_exists(obj_text);
+
+if(textbox){
+    if(showMini == true){
+        draw_sprite(spr_mini, 0, x1, y1);
+    }
+    if(showTao == true){
+        draw_sprite(spr_tao, 0, x1, y1);
+    }
+}else {
+    showMini = false;
+    showTao = false;
+}
 </string>
           </argument>
         </arguments>
